@@ -25,23 +25,23 @@ void filmy()
     int choice;
     do {
         system("cls");
-        std::cout << "1. Film1 [20:30] Sala1\n"
+        cout << "1. Film1 [20:30] Sala1\n"
             << "2. Film2 [15:30]\n"
             << "3. Film3 [17:30]\n"
             << "4. Spatky\n";
 
-        std::cout << "\nVyber: ";
-        std::cin >> choice;
+        cout << "\nVyber: ";
+        cin >> choice;
 
         switch (choice) {
         case 1: {
             system("cls");
 
-
             char buffer[256];
             char pismeno;
             int cislo;
-            int ovladaniemiesta = 0;
+            int ovladaniePismena = 0;
+            int ovladanieCisla = 0;
 
             fopen_s(&f, "C:\\Users\\lovis\\Documents\\Skola\\BPC-PC1T\\Projekt_kino_main\\kino5\\Sala1.txt", "r");
 
@@ -76,10 +76,12 @@ void filmy()
 
                 if (scanf(" %c%d", &pismeno, &cislo) == 2 && isalpha(pismeno) && (cislo > 0 && cislo < 8)) {
                     printf("Napisal si: %c%d\n", pismeno, cislo);
+                    ovladanieCisla = 1;
                     Sleep(1000);
                     //break;
                 }
-                else {
+                else 
+                {
                     system("cls");
                     printf("Zly input! Skuste to znovu.\n");
                     Sleep(1000);
@@ -87,10 +89,7 @@ void filmy()
                     while (getchar() != '\n');
                 }
 
-
-
                 fopen_s(&f, "C:\\Users\\lovis\\Documents\\Skola\\BPC-PC1T\\Projekt_kino_main\\kino5\\Sala1.txt", "r+");
-
 
                 const int rows = 8;
                 const int cols = 24;
@@ -110,7 +109,6 @@ void filmy()
                     cout << endl;
                 }
 
-                // Change one 'O' to 'X' at position [5,5]
                 //grid[5][5] = 'X';
                 // 7 - 23 -- 1-7
                 
@@ -119,47 +117,47 @@ void filmy()
                     case 'a':
                     case 'A':
                         cisloPismeno = 7;
-                        ovladaniemiesta = 1;
+                        ovladaniePismena = 1;
                         break;
                     case 'b':
                     case 'B':
                         cisloPismeno = 9;
-                        ovladaniemiesta = 1;
+                        ovladaniePismena = 1;
                         break;
                     case 'c':
                     case 'C':
                         cisloPismeno = 11;
-                        ovladaniemiesta = 1;
+                        ovladaniePismena = 1;
                         break;
                     case 'd':
                     case 'D':
                         cisloPismeno = 13;
-                        ovladaniemiesta = 1;
+                        ovladaniePismena = 1;
                         break;
                     case 'e':
                     case 'E':
                         cisloPismeno = 15;
-                        ovladaniemiesta = 1;
+                        ovladaniePismena = 1;
                         break;
                     case 'f':
                     case 'F':
                         cisloPismeno = 17;
-                        ovladaniemiesta = 1;
+                        ovladaniePismena = 1;
                         break;;
                     case 'g':
                     case 'G':
                         cisloPismeno = 19;
-                        ovladaniemiesta = 1;
+                        ovladaniePismena = 1;
                         break;
                     case 'h':
                     case 'H':
                         cisloPismeno = 21;
-                        ovladaniemiesta = 1;
+                        ovladaniePismena = 1;
                         break;
                     case 'i':
                     case 'I':
                         cisloPismeno = 23;
-                        ovladaniemiesta = 1;
+                        ovladaniePismena = 1;
                         break;
 
                 default:
@@ -169,11 +167,10 @@ void filmy()
                     break;
                 }
 
-                if (ovladaniemiesta == 1)
+                if ((ovladaniePismena == 1) && (ovladanieCisla == 1))
                 {
                     grid[cislo][cisloPismeno - 3] = 'X';
 
-                    // Rewind the file to the beginning
                     rewind(f);
 
                     // Write the modified grid back to the file
@@ -187,9 +184,7 @@ void filmy()
                         }
                     }
 
-
                     fclose(f);
-
 
                     system("cls");
                     printf("\nHotovo");
@@ -197,7 +192,7 @@ void filmy()
                 else
                 {
                     system("cls");
-                    printf("\nZly input2");
+                    printf("Zly input2");
                 }
                
                 Sleep(1000);
@@ -231,35 +226,11 @@ void filmy()
     
 }
 
-void sala1() 
-{
-    const int pocetRadov = 7;
-    const int pocetMiestvRade = 10;
-
-    int miestenka;
-
-}
 
 int main()
 {
-    typedef struct 
-    {
-        int kod;
-        bool obsadene;   
-    }sedadloFilm1;
-    
-    sedadloFilm1 sedadlo1;
-    sedadlo1.kod = 111;
-
-    
-    typedef struct
-    {
-
-    }sala1;
-
     FILE* f;
   
-
     int choice;
     do {
         cout << "1. Vybrat film a rezervovat miesta\n"
