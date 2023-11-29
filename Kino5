@@ -25,9 +25,9 @@ void filmy()
     int choice;
     do {
         system("cls");
-        cout << "1. Film1 [20:30] Sala1\n"
-            << "2. Film2 [15:30]\n"
-            << "3. Film3 [17:30]\n"
+        cout << "1. John Wick 5 [20:30] Sala1\n"
+            << "2. Five Nighs at Freddys [15:30] Sala2\n"
+            << "3. Napoleon [17:30] Sala3\n"
             << "4. Spatky\n";
 
         cout << "\nVyber: ";
@@ -94,8 +94,9 @@ void filmy()
                 const int rows = 8;
                 const int cols = 24;
                 int cisloPismeno = 0;
+                int cisloKod = 0;
 
-                // Read the existing content and print it
+                // Precitaj a vypíš
                 char grid[rows][cols];
                 for (int i = 0; i < rows; ++i) {
                     for (int j = 0; j < cols; ++j) {
@@ -104,9 +105,10 @@ void filmy()
                             fclose(f);
                             return;
                         }
-                        cout << grid[i][j] << ' ';
+                        //cout << grid[i][j] << ' ';    
                     }
                     cout << endl;
+                    system("cls");
                 }
 
                 //grid[5][5] = 'X';
@@ -118,46 +120,55 @@ void filmy()
                     case 'A':
                         cisloPismeno = 7;
                         ovladaniePismena = 1;
+                        cisloKod = 1;
                         break;
                     case 'b':
                     case 'B':
                         cisloPismeno = 9;
                         ovladaniePismena = 1;
+                        cisloKod = 2;
                         break;
                     case 'c':
                     case 'C':
                         cisloPismeno = 11;
                         ovladaniePismena = 1;
+                        cisloKod = 3;
                         break;
                     case 'd':
                     case 'D':
                         cisloPismeno = 13;
                         ovladaniePismena = 1;
+                        cisloKod = 4;
                         break;
                     case 'e':
                     case 'E':
                         cisloPismeno = 15;
                         ovladaniePismena = 1;
+                        cisloKod = 5;
                         break;
                     case 'f':
                     case 'F':
                         cisloPismeno = 17;
                         ovladaniePismena = 1;
+                        cisloKod = 6;
                         break;;
                     case 'g':
                     case 'G':
                         cisloPismeno = 19;
                         ovladaniePismena = 1;
+                        cisloKod = 7;
                         break;
                     case 'h':
                     case 'H':
                         cisloPismeno = 21;
                         ovladaniePismena = 1;
+                        cisloKod = 8;
                         break;
                     case 'i':
                     case 'I':
                         cisloPismeno = 23;
                         ovladaniePismena = 1;
+                        cisloKod = 9;
                         break;
 
                 default:
@@ -169,25 +180,38 @@ void filmy()
 
                 if ((ovladaniePismena == 1) && (ovladanieCisla == 1))
                 {
-                    grid[cislo][cisloPismeno - 3] = 'X';
 
-                    rewind(f);
+                    if (grid[cislo][cisloPismeno - 3] == 'X' )
+                    {
+                        printf_s("Miesto je obsadene.");
+                        Sleep(1000);
+                    }
+                    else
+                    {
+                        grid[cislo][cisloPismeno - 3] = 'X';
 
-                    // Write the modified grid back to the file
-                    for (int i = 0; i < rows; ++i) {
-                        for (int j = 0; j < cols; ++j) {
-                            if (fwrite(&grid[i][j], sizeof(char), 1, f) != 1) {
-                                cerr << "Error writing to file." << endl;
-                                fclose(f);
-                                return;
+                        printf_s("Tvoj kod je %d%d%d",1, cislo, cisloKod);
+                        Sleep(4000);
+                        while (getchar() != '\n');
+
+                        rewind(f);
+
+                        // Zmeň a zapíš späť do textaku
+                        for (int i = 0; i < rows; ++i) {
+                            for (int j = 0; j < cols; ++j) {
+                                if (fwrite(&grid[i][j], sizeof(char), 1, f) != 1) {
+                                    cerr << "Error writing to file." << endl;
+                                    fclose(f);
+                                    return;
+                                }
                             }
                         }
-                    }
 
-                    fclose(f);
+                        fclose(f);
 
-                    system("cls");
-                    printf("\nHotovo");
+                        system("cls");
+                        printf("\nHotovo");
+                    }              
                 }
                 else
                 {
@@ -197,7 +221,6 @@ void filmy()
                
                 Sleep(1000);
                 fclose(f);
-
 
                 //Sleep(2000);
 
@@ -220,19 +243,96 @@ void filmy()
             system("cls");
     
         }
+    } while (choice != 0);   
+}
+
+
+void zrusitRezervaciu()
+{
+    FILE* f;
+
+    char pismeno ;
+    int cislo;
+
+    int choice;
+    do
+    {
+        system("cls");
+
+        cout << "1. Zrusit rezervaciu na: John Wick 5 [20:30] Sala1\n"
+            << "2. Zrusit rezervaciu na: Five Nighs at Freddys [15:30] Sala2\n"
+            << "3. Zrusit rezervaciu na: Napoleon [17:30] Sala3 \n"
+            << "0. Exit\n";
+        cout << "Vyber: ";
+        cin >> choice;
+
+        switch (choice)
+        {
+        case 1:
+           
+            do
+            {
+                fflush(stdin);
+                system("cls");
+                printf_s("Zadajte kod listku: ");
+                if ((scanf_s("%d sala1 %c", &cislo, &pismeno)) == 2 && (cislo > 0 && cislo < 8))
+                {
+                    pismeno = tolower(pismeno);
+
+                    if (pismeno >= 'a' && pismeno <= 'i')
+                    {
+                        
+                            printf("AAAAANNNNNOOOOO.");
+                            Sleep(2000);
+                            fclose(f);
+                            return;
+                            break;
+                    }
+                    else
+                    {
+                        printf("NNNNIIIEEEE.");
+                        Sleep(2000);
+                        fclose(f); 
+                        return;
+                        break;
+                    }
+                  
+                    
+                }
+                printf("\nZly kod.");
+                Sleep(1000);
+                
+            } while (true);
+            
+           
+
+
+
+
+            
+            break;
+        case 2:
+
+            break;
+        case 3:
+
+            break;
+        case 0:
+            return;
+        default:
+            printf("Zla volba.");
+            Sleep(1000);
+            break;
+        }
     } while (choice != 0);
-  
-    
-    
 }
 
 
 int main()
 {
-    FILE* f;
-  
     int choice;
     do {
+        system("cls");
         cout << "1. Vybrat film a rezervovat miesta\n"
             << "2. Zrusit rezervaciu\n"
             << "3. Zmenit nazov filmu a cas vysielania\n"
@@ -247,7 +347,7 @@ int main()
             break;      
         case 2:
             system("cls");
-
+            zrusitRezervaciu();
             break;
         case 3:
             system("cls");
