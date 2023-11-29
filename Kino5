@@ -1,0 +1,293 @@
+// kino5.cpp : Defines the entry point for the application.
+//
+
+#include "kino5.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include <string>
+#include <iostream>
+#include <iomanip>
+#include <windows.h>
+#include <cctype>
+#include <string>
+
+
+using namespace std;
+
+void filmy()
+{
+    system("cls");
+    FILE* f;
+
+    int choice;
+    do {
+        system("cls");
+        std::cout << "1. Film1 [20:30] Sala1\n"
+            << "2. Film2 [15:30]\n"
+            << "3. Film3 [17:30]\n"
+            << "4. Spatky\n";
+
+        std::cout << "\nVyber: ";
+        std::cin >> choice;
+
+        switch (choice) {
+        case 1: {
+            system("cls");
+
+
+            char buffer[256];
+            char pismeno;
+            int cislo;
+            int ovladaniemiesta = 0;
+
+            fopen_s(&f, "C:\\Users\\lovis\\Documents\\Skola\\BPC-PC1T\\Projekt_kino_main\\kino5\\Sala1.txt", "r");
+
+            if (f == nullptr) {
+                perror("Chyba pri otvarani suboru.");
+                return;
+            }
+
+            while (fgets(buffer, sizeof(buffer), f) != nullptr) {
+                printf("%s", buffer);
+            }
+            fclose(f);
+
+            while (getchar() != '\n');
+
+            while (true) {
+                system("cls");
+
+                fopen_s(&f, "C:\\Users\\lovis\\Documents\\Skola\\BPC-PC1T\\Projekt_kino_main\\kino5\\Sala1.txt", "r");
+
+                if (f == nullptr) {
+                    perror("Chyba pri otvarani suboru.");
+                    return;
+                }
+
+                while (fgets(buffer, sizeof(buffer), f) != nullptr) {
+                    printf("%s", buffer);
+                }
+                fclose(f);
+
+                printf("\n\n\nVlozte pismeno a cislo miesta v tvar 'A1': ");
+
+                if (scanf(" %c%d", &pismeno, &cislo) == 2 && isalpha(pismeno) && (cislo > 0 && cislo < 8)) {
+                    printf("Napisal si: %c%d\n", pismeno, cislo);
+                    Sleep(1000);
+                    //break;
+                }
+                else {
+                    system("cls");
+                    printf("Zly input! Skuste to znovu.\n");
+                    Sleep(1000);
+
+                    while (getchar() != '\n');
+                }
+
+
+
+                fopen_s(&f, "C:\\Users\\lovis\\Documents\\Skola\\BPC-PC1T\\Projekt_kino_main\\kino5\\Sala1.txt", "r+");
+
+
+                const int rows = 8;
+                const int cols = 24;
+                int cisloPismeno = 0;
+
+                // Read the existing content and print it
+                char grid[rows][cols];
+                for (int i = 0; i < rows; ++i) {
+                    for (int j = 0; j < cols; ++j) {
+                        if (fread(&grid[i][j], sizeof(char), 1, f) != 1) {
+                            cerr << "Error reading from file." << endl;
+                            fclose(f);
+                            return;
+                        }
+                        cout << grid[i][j] << ' ';
+                    }
+                    cout << endl;
+                }
+
+                // Change one 'O' to 'X' at position [5,5]
+                //grid[5][5] = 'X';
+                // 7 - 23 -- 1-7
+                
+                switch (pismeno)
+                {
+                    case 'a':
+                    case 'A':
+                        cisloPismeno = 7;
+                        ovladaniemiesta = 1;
+                        break;
+                    case 'b':
+                    case 'B':
+                        cisloPismeno = 9;
+                        ovladaniemiesta = 1;
+                        break;
+                    case 'c':
+                    case 'C':
+                        cisloPismeno = 11;
+                        ovladaniemiesta = 1;
+                        break;
+                    case 'd':
+                    case 'D':
+                        cisloPismeno = 13;
+                        ovladaniemiesta = 1;
+                        break;
+                    case 'e':
+                    case 'E':
+                        cisloPismeno = 15;
+                        ovladaniemiesta = 1;
+                        break;
+                    case 'f':
+                    case 'F':
+                        cisloPismeno = 17;
+                        ovladaniemiesta = 1;
+                        break;;
+                    case 'g':
+                    case 'G':
+                        cisloPismeno = 19;
+                        ovladaniemiesta = 1;
+                        break;
+                    case 'h':
+                    case 'H':
+                        cisloPismeno = 21;
+                        ovladaniemiesta = 1;
+                        break;
+                    case 'i':
+                    case 'I':
+                        cisloPismeno = 23;
+                        ovladaniemiesta = 1;
+                        break;
+
+                default:
+                    printf_s("Zly input miesta!");
+                    Sleep(1000);
+                    system("cls");
+                    break;
+                }
+
+                if (ovladaniemiesta == 1)
+                {
+                    grid[cislo][cisloPismeno - 3] = 'X';
+
+                    // Rewind the file to the beginning
+                    rewind(f);
+
+                    // Write the modified grid back to the file
+                    for (int i = 0; i < rows; ++i) {
+                        for (int j = 0; j < cols; ++j) {
+                            if (fwrite(&grid[i][j], sizeof(char), 1, f) != 1) {
+                                cerr << "Error writing to file." << endl;
+                                fclose(f);
+                                return;
+                            }
+                        }
+                    }
+
+
+                    fclose(f);
+
+
+                    system("cls");
+                    printf("\nHotovo");
+                }
+                else
+                {
+                    system("cls");
+                    printf("\nZly input2");
+                }
+               
+                Sleep(1000);
+                fclose(f);
+
+
+                //Sleep(2000);
+
+                break;
+            }
+        }
+        case 2:
+            system("cls");
+
+            break;
+        case 3:
+
+            break;
+
+        case 4:
+            system("cls");
+            return;
+            break;
+        default:
+            system("cls");
+    
+        }
+    } while (choice != 0);
+  
+    
+    
+}
+
+void sala1() 
+{
+    const int pocetRadov = 7;
+    const int pocetMiestvRade = 10;
+
+    int miestenka;
+
+}
+
+int main()
+{
+    typedef struct 
+    {
+        int kod;
+        bool obsadene;   
+    }sedadloFilm1;
+    
+    sedadloFilm1 sedadlo1;
+    sedadlo1.kod = 111;
+
+    
+    typedef struct
+    {
+
+    }sala1;
+
+    FILE* f;
+  
+
+    int choice;
+    do {
+        cout << "1. Vybrat film a rezervovat miesta\n"
+            << "2. Zrusit rezervaciu\n"
+            << "3. Zmenit nazov filmu a cas vysielania\n"
+            << "0. Exit\n";
+        cout << "Vyber: ";
+        cin >> choice;
+
+        switch (choice) {
+        case 1: 
+            system("cls");
+            filmy();
+            break;      
+        case 2:
+            system("cls");
+
+            break;
+        case 3:
+            system("cls");
+
+            break;
+        case 0:
+            system("cls");
+            cout << "Koniec.\n";
+            break;
+        default:
+            system("cls");
+        }
+    } while (choice != 0);
+}
