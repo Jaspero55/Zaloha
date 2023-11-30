@@ -251,12 +251,17 @@ void zrusitRezervaciu()
 {
     FILE* f;
 
-    char pismeno ;
-    int cislo;
-
+    int cislo = 0;
     int choice;
+    const int rows = 8;
+    const int cols = 24;
+    int cisloPismeno = 0;
+
     do
     {
+        int cisloNaPracu = 0;
+        int poslednaCislica = 0;
+
         system("cls");
 
         cout << "1. Zrusit rezervaciu na: John Wick 5 [20:30] Sala1\n"
@@ -275,33 +280,94 @@ void zrusitRezervaciu()
                 fflush(stdin);
                 system("cls");
                 printf_s("Zadajte kod listku: ");
-                if ((scanf_s("%d sala1 %c", &cislo, &pismeno)) == 2 && (cislo > 0 && cislo < 8))
-                {
-                    pismeno = tolower(pismeno);
 
-                    if (pismeno >= 'a' && pismeno <= 'i')
-                    {
-                        
-                            printf("AAAAANNNNNOOOOO.");
-                            Sleep(2000);
-                            fclose(f);
-                            return;
-                            break;
+                if ((scanf_s("%d", &cislo)) == 1 && (cislo > 0 && cislo < 180))
+                {
+                    fopen_s(&f, "C:\\Users\\lovis\\Documents\\Skola\\BPC-PC1T\\Projekt_kino_main\\kino5\\Sala1.txt", "r+");
+
+
+                    char grid[rows][cols];
+                    for (int i = 0; i < rows; ++i) {
+                        for (int j = 0; j < cols; ++j) {
+                            if (fread(&grid[i][j], sizeof(char), 1, f) != 1) {
+                                cerr << "Error reading from file." << endl;
+                                fclose(f);
+                                return;
+                            }    
+                        }
+                        cout << endl;
+                        system("cls");
                     }
-                    else
+                    cisloNaPracu = cislo - 100;
+                    poslednaCislica = cisloNaPracu % 10;
+
+                    switch (poslednaCislica)
                     {
-                        printf("NNNNIIIEEEE.");
-                        Sleep(2000);
-                        fclose(f); 
-                        return;
+                    case 1:
+                        cisloPismeno = 7;
+                        break;
+                    case 2:
+                        cisloPismeno = 9;
+                        break;
+                    case 3:
+                        cisloPismeno = 11;
+                        break;
+                    case 4:
+                        cisloPismeno = 13;
+                        break;
+                    case 5:
+                        cisloPismeno = 15;
+                        break;
+                    case 6:
+                        cisloPismeno = 17;
+                        break;
+                    case 7:
+                        cisloPismeno = 19;
+                        break;
+                    case 8:
+                        cisloPismeno = 21;
+                        break;
+                    case 9:
+                        cisloPismeno = 23;
+                        break;
+                    default:
                         break;
                     }
-                  
-                    
+                   /* if (grid[cislo][cisloPismeno - 3] == 'X')   //Tu som skoncil
+                    {
+                        printf_s("Miesto je obsadene.");
+                        Sleep(1000);
+                    }*/
+
+                    printf("AAAAANNNNNOOOOO.");
+                    Sleep(2000);
+
+                    fclose(f);
+                    return;
+                    break;
+                                                         
                 }
                 printf("\nZly kod.");
                 Sleep(1000);
-                
+
+                system("cls");
+            
+                cout << "1. Pokracovat\n"
+                    << "2. Exit\n";
+                    
+                cout << "\nVyber: ";
+
+                cin >> choice;
+                switch (choice)
+                {
+                case 1:
+
+                    break;;
+                default:
+                    return;
+                    break;
+                }
+                              
             } while (true);
             
            
