@@ -490,9 +490,6 @@ void filmy()
     }
   
     cin >> choice;
-
-   
-
         switch (choice) {
         case 1: {
             char buffer[256];
@@ -555,25 +552,23 @@ void filmy()
                 const int cols = 24;
                 int cisloPismeno = 0;
                 int cisloKod = 0;
-                char grid[rows][cols];
+
                 // Precitaj a vypíš
-                /*char grid[rows][cols];
+                char grid[rows][cols];
                 for (int i = 0; i < rows; ++i) {
                     for (int j = 0; j < cols; ++j) {
                         if (fread(&grid[i][j], sizeof(char), 1, f) != 1) {
                             cerr << "Error reading from file." << endl;
                             fclose(f);
                             return;
-                        }
-                        //cout << grid[i][j] << ' ';    
+                        }   
                     }
                     cout << endl;
                     system("cls");
-                }*/
+                }
 
                 //grid[5][5] = 'X';
-                // 7 - 23 -- 1-7
-                
+                // 7 - 23 -- 1-7             
                 switch (pismeno)
                 {
                     case 'a':
@@ -630,7 +625,6 @@ void filmy()
                         ovladaniePismena = 1;
                         cisloKod = 9;
                         break;
-
                 default:
                     printf_s("Zly input miesta!");
                     Sleep(1000);
@@ -640,7 +634,6 @@ void filmy()
 
                 if ((ovladaniePismena == 1) && (ovladanieCisla == 1))
                 {
-
                     if (grid[cislo][cisloPismeno - 3] == 'X' )
                     {
                         printf_s("Miesto je obsadene.");
@@ -652,7 +645,7 @@ void filmy()
                         grid[cislo][cisloPismeno - 3] = 'X';
 
                         printf_s("Tvoj kod je %d%d%d",1, cislo, cisloKod);
-                        Sleep(4000);
+                        Sleep(2500);
                         while (getchar() != '\n');
 
                         rewind(f);
@@ -687,6 +680,7 @@ void filmy()
 
                 break;
             }
+            break;
         }
         case 2:
         {
@@ -759,15 +753,11 @@ void filmy()
                             cerr << "Error reading from file." << endl;
                             fclose(f1);
                             return;
-                        }
-                        //cout << grid[i][j] << ' ';    
+                        }    
                     }
                     cout << endl;
                     system("cls");
                 }
-
-                //grid[5][5] = 'X';
-                // 7 - 23 -- 1-7
 
                 switch (pismeno2)
                 {
@@ -825,7 +815,6 @@ void filmy()
                     ovladaniePismena2 = 1;
                     cisloKod = 9;
                     break;
-
                 default:
                     printf_s("Zly input miesta!");
                     Sleep(1000);
@@ -835,7 +824,6 @@ void filmy()
 
                 if ((ovladaniePismena2 == 1) && (ovladanieCisla2 == 1))
                 {
-
                     if (grid[cislo2][cisloPismeno - 3] == 'X')
                     {
                         printf_s("Miesto je obsadene.");
@@ -846,7 +834,7 @@ void filmy()
                         grid[cislo2][cisloPismeno - 3] = 'X';
 
                         printf_s("Tvoj kod je %d%d%d", 2, cislo2, cisloKod);
-                        Sleep(4000);
+                        Sleep(2500);
                         while (getchar() != '\n');
 
                         rewind(f1);
@@ -984,7 +972,7 @@ void zrusitRezervaciu()
         switch (choice)
         {
         case 1:
-           
+        {
             do
             {
                 fflush(stdin);
@@ -1003,7 +991,7 @@ void zrusitRezervaciu()
                                 cerr << "Error reading from file." << endl;
                                 fclose(f);
                                 return;
-                            }    
+                            }
                         }
                         cout << endl;
                         system("cls");
@@ -1044,11 +1032,11 @@ void zrusitRezervaciu()
                     default:
                         break;
                     }
-                   /* if (grid[cislo][cisloPismeno - 3] == 'X')   //Tu som skoncil
-                    {
-                        printf_s("Miesto je obsadene.");
-                        Sleep(1000);
-                    }*/
+                    /* if (grid[cislo][cisloPismeno - 3] == 'X')   //Tu som skoncil
+                     {
+                         printf_s("Miesto je obsadene.");
+                         Sleep(1000);
+                     }*/
 
                     if (grid[cislicaRadu][cisloPismeno - 3] == 'O')
                     {
@@ -1058,9 +1046,6 @@ void zrusitRezervaciu()
                     else
                     {
                         grid[cislicaRadu][cisloPismeno - 3] = 'O';
-
-                        Sleep(4000);
-                        while (getchar() != '\n');
 
                         rewind(f);
 
@@ -1082,16 +1067,16 @@ void zrusitRezervaciu()
 
                     fclose(f);
                     return;
-                    break;                                                         
+                    break;
                 }
                 printf("\nZly kod.");
                 Sleep(1000);
 
                 system("cls");
-            
+
                 cout << "1. Pokracovat\n"
                     << "2. Exit\n";
-                    
+
                 cout << "\nVyber: ";
 
                 cin >> choice;
@@ -1102,12 +1087,14 @@ void zrusitRezervaciu()
                 default:
                     return;
                 }
-                              
-            } while (true);          
-            
+
+            } while (true);
+
             break;
+        }
         case 2:
-            /*
+        {
+            {
             fflush(stdin);
             system("cls");
             printf_s("Zadajte kod listku: ");
@@ -1115,7 +1102,6 @@ void zrusitRezervaciu()
             if ((scanf_s("%d", &cislo)) == 1 && (cislo > 210 && cislo < 280))
             {
                 fopen_s(&f1, "C:\\Users\\lovis\\Documents\\Skola\\BPC-PC1T\\Projekt_kino_main\\kino5\\Sala2.txt", "r+");
-
 
                 char grid[rows][cols];
                 for (int i = 0; i < rows; ++i) {
@@ -1165,11 +1151,6 @@ void zrusitRezervaciu()
                 default:
                     break;
                 }
-                /* if (grid[cislo][cisloPismeno - 3] == 'X')   //Tu som skoncil
-                 {
-                     printf_s("Miesto je obsadene.");
-                     Sleep(1000);
-                 }
 
                 if (grid[cislicaRadu][cisloPismeno - 3] == 'O')
                 {
@@ -1179,9 +1160,6 @@ void zrusitRezervaciu()
                 else
                 {
                     grid[cislicaRadu][cisloPismeno - 3] = 'O';
-
-                    Sleep(4000);
-                    while (getchar() != '\n');
 
                     rewind(f1);
 
@@ -1226,7 +1204,8 @@ void zrusitRezervaciu()
 
             } while (true);
 
-            break;*/
+        break;
+        }
         case 3:
 
             break;
