@@ -13,6 +13,8 @@
 #include <windows.h>
 #include <cctype>
 #include <string>
+#include <cstdlib>
+#include <random>
 
 using namespace std;
 
@@ -110,6 +112,7 @@ void zmenaNazvuACasu()
 
             if (vyber == 1)
             {
+                
                 printf_s("\nZadajte novy nazov filmu S PODTRZITKOM namiesto medzery: ");
                 if (scanf_s("%49s", nazov1, sizeof(nazov1)) == 1)
                 {
@@ -119,13 +122,7 @@ void zmenaNazvuACasu()
 
                     Sleep(1000);
                 }
-                else
-                {
-                    system("cls");
-                    printf_s("Chyba!");
-                    Sleep(1000);
-                    break;
-                }
+           
 
                 //system("cls");
                 int hodina = 0;
@@ -508,6 +505,10 @@ void filmy()
                 return;
             }
 
+            int nahodne = 0;
+            printf("\nChcete vybrat sedadlo nahodne?\n\n1) Ano\n2) Nie\n");
+            scanf_s("%d",&nahodne);
+
             while (fgets(buffer, sizeof(buffer), f) != nullptr) {
                 printf("%s", buffer);
             }
@@ -530,21 +531,313 @@ void filmy()
                 }
                 fclose(f);
 
-                printf("\n\n\nVlozte pismeno a cislo miesta v tvar 'A1': ");
+                int vyberSektoru;
+                if (nahodne == 1)
+                {
+                    do
+                    {
+                        printf("\n\nVyberte sektor, v ktorom chcete sediet: \n");
+                        cout << "1. Lavy horny\n"
+                            << "2. Stredny horny\n"
+                            << "3. Pravy horny\n"
+                            << "4. Lavy stredny\n"
+                            << "5. Stredny\n"
+                            << "6. Pravy stredny\n"
+                            << "7. Lavy dolny\n"
+                            << "8. Stredny dolny\n"
+                            << "9. Pravy dolny\n";
+                        cout << "\nVyber: ";
+                        cin >> vyberSektoru;
 
-                if (scanf(" %c%d", &pismeno, &cislo) == 2 && isalpha(pismeno) && (cislo > 0 && cislo < 8)) {
-                    printf("Napisal si: %c%d\n", pismeno, cislo);
-                    ovladanieCisla = 1;
-                    Sleep(1000);
-                    //break;
+                        switch (vyberSektoru)
+                        {
+                        case 1:
+                        {
+                            random_device rd;
+                            mt19937 gen(rd());
+                            uniform_int_distribution<int> distribution(1, 3);
+                            // Generate a random number
+                            int randomNumber = distribution(gen);
+
+                            random_device rd2;
+                            mt19937 gen2(rd2());
+                            uniform_int_distribution<int> distribution2(1, 2);
+                            // Generate a random number
+                            cislo = distribution2(gen2);
+
+                            if (randomNumber == 1)
+                            {
+                                pismeno = 'A';
+                            }
+                            else if (randomNumber == 2)
+                            {
+                                pismeno = 'B';                                
+                            }
+                            else if (randomNumber == 3)
+                            {
+                                pismeno = 'C';
+                            }
+                            ovladanieCisla = 1;
+                            break;
+                        }
+                        case 2:
+                        {
+                            random_device rd;
+                            mt19937 gen(rd());
+                            uniform_int_distribution<int> distribution(4, 6);
+                            // Generate a random number
+                            int randomNumber = distribution(gen);
+
+                            random_device rd2;
+                            mt19937 gen2(rd2());
+                            uniform_int_distribution<int> distribution2(1, 2);
+                            // Generate a random number
+                            cislo = distribution2(gen2);
+
+                            if (randomNumber == 4)
+                            {
+                                pismeno = 'D';
+                            }
+                            else if (randomNumber == 5)
+                            {
+                                pismeno = 'E';
+                            }
+                            else if (randomNumber == 6)
+                            {
+                                pismeno = 'F';
+                            }
+                            ovladanieCisla = 1;
+                            break;
+                        }
+                        case 3:
+                        {
+                            random_device rd;
+                            mt19937 gen(rd());
+                            uniform_int_distribution<int> distribution(7, 9);
+                            // Generate a random number
+                            int randomNumber = distribution(gen);
+
+                            random_device rd2;
+                            mt19937 gen2(rd2());
+                            uniform_int_distribution<int> distribution2(1, 2);
+                            // Generate a random number
+                            cislo = distribution2(gen2);
+
+                            if (randomNumber == 7)
+                            {
+                                pismeno = 'G';
+                            }
+                            else if (randomNumber == 8)
+                            {
+                                pismeno = 'H';
+                            }
+                            else if (randomNumber == 9)
+                            {
+                                pismeno = 'I';
+                            }
+                            ovladanieCisla = 1;
+                            break;
+                        }
+                        case 4:
+                        {
+                            random_device rd;
+                            mt19937 gen(rd());
+                            uniform_int_distribution<int> distribution(1, 3);
+                            // Generate a random number
+                            int randomNumber = distribution(gen);
+
+                            random_device rd2;
+                            mt19937 gen2(rd2());
+                            uniform_int_distribution<int> distribution2(3, 4);
+                            // Generate a random number
+                            cislo = distribution2(gen2);
+
+                            if (randomNumber == 1)
+                            {
+                                pismeno = 'A';
+                            }
+                            else if (randomNumber == 2)
+                            {
+                                pismeno = 'B';
+                            }
+                            else if (randomNumber == 3)
+                            {
+                                pismeno = 'C';
+                            }
+                            ovladanieCisla = 1;
+                            break;
+                        }
+                        case 5:
+                        {
+                            random_device rd;
+                            mt19937 gen(rd());
+                            uniform_int_distribution<int> distribution(4, 6);
+                            // Generate a random number
+                            int randomNumber = distribution(gen);
+
+                            random_device rd2;
+                            mt19937 gen2(rd2());
+                            uniform_int_distribution<int> distribution2(3, 4);
+                            // Generate a random number
+                            cislo = distribution2(gen2);
+
+                            if (randomNumber == 4)
+                            {
+                                pismeno = 'D';
+                            }
+                            else if (randomNumber == 5)
+                            {
+                                pismeno = 'E';
+                            }
+                            else if (randomNumber == 6)
+                            {
+                                pismeno = 'F';
+                            }
+                            ovladanieCisla = 1;
+                            break;
+                        }
+                        case 6:
+                        {
+                            random_device rd;
+                            mt19937 gen(rd());
+                            uniform_int_distribution<int> distribution(7, 9);
+                            // Generate a random number
+                            int randomNumber = distribution(gen);
+
+                            random_device rd2;
+                            mt19937 gen2(rd2());
+                            uniform_int_distribution<int> distribution2(3, 4);
+                            // Generate a random number
+                            cislo = distribution2(gen2);
+
+                            if (randomNumber == 7)
+                            {
+                                pismeno = 'G';
+                            }
+                            else if (randomNumber == 8)
+                            {
+                                pismeno = 'H';
+                            }
+                            else if (randomNumber == 9)
+                            {
+                                pismeno = 'I';
+                            }
+                            ovladanieCisla = 1;
+                            break;
+                        }
+                        case 7:
+                        {
+                            random_device rd;
+                            mt19937 gen(rd());
+                            uniform_int_distribution<int> distribution(1, 3);
+                            // Generate a random number
+                            int randomNumber = distribution(gen);
+
+                            random_device rd2;
+                            mt19937 gen2(rd2());
+                            uniform_int_distribution<int> distribution2(5, 7);
+                            // Generate a random number
+                            cislo = distribution2(gen2);
+
+                            if (randomNumber == 1)
+                            {
+                                pismeno = 'A';
+                            }
+                            else if (randomNumber == 2)
+                            {
+                                pismeno = 'B';
+                            }
+                            else if (randomNumber == 3)
+                            {
+                                pismeno = 'C';
+                            }
+                            ovladanieCisla = 1;
+                            break;
+                        }
+                        case 8:
+                        {
+                            random_device rd;
+                            mt19937 gen(rd());
+                            uniform_int_distribution<int> distribution(4, 6);
+                            // Generate a random number
+                            int randomNumber = distribution(gen);
+
+                            random_device rd2;
+                            mt19937 gen2(rd2());
+                            uniform_int_distribution<int> distribution2(5, 7);
+                            // Generate a random number
+                            cislo = distribution2(gen2);
+
+                            if (randomNumber == 4)
+                            {
+                                pismeno = 'D';
+                            }
+                            else if (randomNumber == 5)
+                            {
+                                pismeno = 'E';
+                            }
+                            else if (randomNumber == 6)
+                            {
+                                pismeno = 'F';
+                            }
+                            ovladanieCisla = 1;
+                            break;
+                        }
+                        case 9:
+                        {
+                            random_device rd;
+                            mt19937 gen(rd());
+                            uniform_int_distribution<int> distribution(7, 9);
+                            // Generate a random number
+                            int randomNumber = distribution(gen);
+
+                            random_device rd2;
+                            mt19937 gen2(rd2());
+                            uniform_int_distribution<int> distribution2(5, 7);
+                            // Generate a random number
+                            cislo = distribution2(gen2);
+
+                            if (randomNumber == 7)
+                            {
+                                pismeno = 'G';
+                            }
+                            else if (randomNumber == 8)
+                            {
+                                pismeno = 'H';
+                            }
+                            else if (randomNumber == 9)
+                            {
+                                pismeno = 'I';
+                            }
+                            ovladanieCisla = 1;
+                            break;
+                        }
+                        default:
+                           
+                            break;
+                        }
+                        break;
+                    } while (true);
+
                 }
                 else 
                 {
-                    system("cls");
-                    printf("Zly input! Skuste to znovu.\n");
-                    Sleep(1000);
+                    printf("\n\n\nVlozte pismeno a cislo miesta v tvar 'A1': ");
 
-                    while (getchar() != '\n');
+                    if (scanf(" %c%d", &pismeno, &cislo) == 2 && isalpha(pismeno) && (cislo > 0 && cislo < 8)) {
+                        printf("Napisal si: %c%d\n", pismeno, cislo);
+                        ovladanieCisla = 1;
+                        Sleep(1000);
+                        //break;
+                    }
+                    else
+                    {
+                        system("cls");
+                        printf("Zly input! Skuste to znovu.\n");
+                        Sleep(1000);
+
+                        while (getchar() != '\n');
+                    }
                 }
 
                 fopen_s(&f, "C:\\Users\\lovis\\Documents\\Skola\\BPC-PC1T\\Projekt_kino_main\\kino5\\Sala1.txt", "r+");
@@ -700,6 +993,10 @@ void filmy()
                 return;
             }
 
+            int nahodne = 0;
+            printf("\nChcete vybrat sedadlo nahodne?\n\n1) Ano\n2) Nie\n");
+            scanf_s("%d", &nahodne);
+
             while (fgets(buffer2, sizeof(buffer2), f1) != nullptr) {
                 printf("%s", buffer2);
             }
@@ -721,24 +1018,316 @@ void filmy()
                     printf("%s", buffer2);
                 }
                 fclose(f1);
+                
+                int vyberSektoru;
+                if (nahodne == 1)
+                {
+                    do
+                    {
+                        printf("\n\nVyberte sektor, v ktorom chcete sediet: \n");
+                        cout << "1. Lavy horny\n"
+                            << "2. Stredny horny\n"
+                            << "3. Pravy horny\n"
+                            << "4. Lavy stredny\n"
+                            << "5. Stredny\n"
+                            << "6. Pravy stredny\n"
+                            << "7. Lavy dolny\n"
+                            << "8. Stredny dolny\n"
+                            << "9. Pravy dolny\n";
+                        cout << "\nVyber: ";
+                        cin >> vyberSektoru;
 
-                printf("\n\n\nVlozte pismeno a cislo miesta v tvar 'A1': ");
+                        switch (vyberSektoru)
+                        {
+                        case 1:
+                        {
+                            random_device rd;
+                            mt19937 gen(rd());
+                            uniform_int_distribution<int> distribution(1, 3);
+                            // Generate a random number
+                            int randomNumber = distribution(gen);
 
-                if (scanf(" %c%d", &pismeno2, &cislo2) == 2 && isalpha(pismeno2) && (cislo2 > 0 && cislo2 < 8)) {
-                    printf("Napisal si: %c%d\n", pismeno2, cislo2);
-                    ovladanieCisla2 = 1;
-                    Sleep(1000);
-                    //break;
+                            random_device rd2;
+                            mt19937 gen2(rd2());
+                            uniform_int_distribution<int> distribution2(1, 2);
+                            // Generate a random number
+                            cislo2 = distribution2(gen2);
+
+                            if (randomNumber == 1)
+                            {
+                                pismeno2 = 'A';
+                            }
+                            else if (randomNumber == 2)
+                            {
+                                pismeno2 = 'B';
+                            }
+                            else if (randomNumber == 3)
+                            {
+                                pismeno2 = 'C';
+                            }
+                            ovladanieCisla2 = 1;
+                            break;
+                        }
+                        case 2:
+                        {
+                            random_device rd;
+                            mt19937 gen(rd());
+                            uniform_int_distribution<int> distribution(4, 6);
+                            // Generate a random number
+                            int randomNumber = distribution(gen);
+
+                            random_device rd2;
+                            mt19937 gen2(rd2());
+                            uniform_int_distribution<int> distribution2(1, 2);
+                            // Generate a random number
+                            cislo2 = distribution2(gen2);
+
+                            if (randomNumber == 4)
+                            {
+                                pismeno2 = 'D';
+                            }
+                            else if (randomNumber == 5)
+                            {
+                                pismeno2 = 'E';
+                            }
+                            else if (randomNumber == 6)
+                            {
+                                pismeno2 = 'F';
+                            }
+                            ovladanieCisla2 = 1;
+                            break;
+                        }
+                        case 3:
+                        {
+                            random_device rd;
+                            mt19937 gen(rd());
+                            uniform_int_distribution<int> distribution(7, 9);
+                            // Generate a random number
+                            int randomNumber = distribution(gen);
+
+                            random_device rd2;
+                            mt19937 gen2(rd2());
+                            uniform_int_distribution<int> distribution2(1, 2);
+                            // Generate a random number
+                            cislo2 = distribution2(gen2);
+
+                            if (randomNumber == 7)
+                            {
+                                pismeno2 = 'G';
+                            }
+                            else if (randomNumber == 8)
+                            {
+                                pismeno2= 'H';
+                            }
+                            else if (randomNumber == 9)
+                            {
+                                pismeno2 = 'I';
+                            }
+                            ovladanieCisla2 = 1;
+                            break;
+                        }
+                        case 4:
+                        {
+                            random_device rd;
+                            mt19937 gen(rd());
+                            uniform_int_distribution<int> distribution(1, 3);
+                            // Generate a random number
+                            int randomNumber = distribution(gen);
+
+                            random_device rd2;
+                            mt19937 gen2(rd2());
+                            uniform_int_distribution<int> distribution2(3, 4);
+                            // Generate a random number
+                            cislo2 = distribution2(gen2);
+
+                            if (randomNumber == 1)
+                            {
+                                pismeno2 = 'A';
+                            }
+                            else if (randomNumber == 2)
+                            {
+                                pismeno2 = 'B';
+                            }
+                            else if (randomNumber == 3)
+                            {
+                                pismeno2 = 'C';
+                            }
+                            ovladanieCisla2 = 1;
+                            break;
+                        }
+                        case 5:
+                        {
+                            random_device rd;
+                            mt19937 gen(rd());
+                            uniform_int_distribution<int> distribution(4, 6);
+                            // Generate a random number
+                            int randomNumber = distribution(gen);
+
+                            random_device rd2;
+                            mt19937 gen2(rd2());
+                            uniform_int_distribution<int> distribution2(3, 4);
+                            // Generate a random number
+                            cislo2 = distribution2(gen2);
+
+                            if (randomNumber == 4)
+                            {
+                                pismeno2 = 'D';
+                            }
+                            else if (randomNumber == 5)
+                            {
+                                pismeno2 = 'E';
+                            }
+                            else if (randomNumber == 6)
+                            {
+                                pismeno2 = 'F';
+                            }
+                            ovladanieCisla2 = 1;
+                            break;
+                        }
+                        case 6:
+                        {
+                            random_device rd;
+                            mt19937 gen(rd());
+                            uniform_int_distribution<int> distribution(7, 9);
+                            // Generate a random number
+                            int randomNumber = distribution(gen);
+
+                            random_device rd2;
+                            mt19937 gen2(rd2());
+                            uniform_int_distribution<int> distribution2(3, 4);
+                            // Generate a random number
+                            cislo2 = distribution2(gen2);
+
+                            if (randomNumber == 7)
+                            {
+                                pismeno2 = 'G';
+                            }
+                            else if (randomNumber == 8)
+                            {
+                                pismeno2 = 'H';
+                            }
+                            else if (randomNumber == 9)
+                            {
+                                pismeno2 = 'I';
+                            }
+                            ovladanieCisla2 = 1;
+                            break;
+                        }
+                        case 7:
+                        {
+                            random_device rd;
+                            mt19937 gen(rd());
+                            uniform_int_distribution<int> distribution(1, 3);
+                            // Generate a random number
+                            int randomNumber = distribution(gen);
+
+                            random_device rd2;
+                            mt19937 gen2(rd2());
+                            uniform_int_distribution<int> distribution2(5, 7);
+                            // Generate a random number
+                            cislo2 = distribution2(gen2);
+
+                            if (randomNumber == 1)
+                            {
+                                pismeno2 = 'A';
+                            }
+                            else if (randomNumber == 2)
+                            {
+                                pismeno2 = 'B';
+                            }
+                            else if (randomNumber == 3)
+                            {
+                                pismeno2 = 'C';
+                            }
+                            ovladanieCisla2 = 1;
+                            break;
+                        }
+                        case 8:
+                        {
+                            random_device rd;
+                            mt19937 gen(rd());
+                            uniform_int_distribution<int> distribution(4, 6);
+                            // Generate a random number
+                            int randomNumber = distribution(gen);
+
+                            random_device rd2;
+                            mt19937 gen2(rd2());
+                            uniform_int_distribution<int> distribution2(5, 7);
+                            // Generate a random number
+                            cislo2 = distribution2(gen2);
+
+                            if (randomNumber == 4)
+                            {
+                                pismeno2 = 'D';
+                            }
+                            else if (randomNumber == 5)
+                            {
+                                pismeno2 = 'E';
+                            }
+                            else if (randomNumber == 6)
+                            {
+                                pismeno2 = 'F';
+                            }
+                            ovladanieCisla2 = 1;
+                            break;
+                        }
+                        case 9:
+                        {
+                            random_device rd;
+                            mt19937 gen(rd());
+                            uniform_int_distribution<int> distribution(7, 9);
+                            // Generate a random number
+                            int randomNumber = distribution(gen);
+
+                            random_device rd2;
+                            mt19937 gen2(rd2());
+                            uniform_int_distribution<int> distribution2(5, 7);
+                            // Generate a random number
+                            cislo2 = distribution2(gen2);
+
+                            if (randomNumber == 7)
+                            {
+                                pismeno2 = 'G';
+                            }
+                            else if (randomNumber == 8)
+                            {
+                                pismeno2 = 'H';
+                            }
+                            else if (randomNumber == 9)
+                            {
+                                pismeno2 = 'I';
+                            }
+                            ovladanieCisla2 = 1;
+                            break;
+                        }
+                        default:
+
+                            break;
+                        }
+                        break;
+                    } while (true);
+
                 }
                 else
                 {
-                    system("cls");
-                    printf("Zly input! Skuste to znovu.\n");
-                    Sleep(1000);
+                    printf("\n\n\nVlozte pismeno a cislo miesta v tvar 'A1': ");
 
-                    while (getchar() != '\n');
+                    if (scanf(" %c%d", &pismeno2, &cislo2) == 2 && isalpha(pismeno2) && (cislo2 > 0 && cislo2 < 8)) {
+                        printf("Napisal si: %c%d\n", pismeno2, cislo2);
+                        ovladanieCisla2 = 1;
+                        Sleep(1000);
+                        //break;
+                    }
+                    else
+                    {
+                        system("cls");
+                        printf("Zly input! Skuste to znovu.\n");
+                        Sleep(1000);
+
+                        while (getchar() != '\n');
+                    }
                 }
-
+                
                 fopen_s(&f1, "C:\\Users\\lovis\\Documents\\Skola\\BPC-PC1T\\Projekt_kino_main\\kino5\\Sala2.txt", "r+");
 
                 const int rows = 8;
@@ -891,6 +1480,10 @@ void filmy()
                     return;
                 }
 
+                int nahodne = 0;
+                printf("\nChcete vybrat sedadlo nahodne?\n\n1) Ano\n2) Nie\n");
+                scanf_s("%d", &nahodne);
+
                 while (fgets(buffer2, sizeof(buffer2), f2) != nullptr) {
                     printf("%s", buffer2);
                 }
@@ -913,21 +1506,312 @@ void filmy()
                     }
                     fclose(f2);
 
-                    printf("\n\n\nVlozte pismeno a cislo miesta v tvar 'A1': ");
+                    int vyberSektoru;
+                    if (nahodne == 1)
+                    {
+                        do
+                        {
+                            printf("\n\nVyberte sektor, v ktorom chcete sediet: \n");
+                            cout << "1. Lavy horny\n"
+                                << "2. Stredny horny\n"
+                                << "3. Pravy horny\n"
+                                << "4. Lavy stredny\n"
+                                << "5. Stredny\n"
+                                << "6. Pravy stredny\n"
+                                << "7. Lavy dolny\n"
+                                << "8. Stredny dolny\n"
+                                << "9. Pravy dolny\n";
+                            cout << "\nVyber: ";
+                            cin >> vyberSektoru;
 
-                    if (scanf(" %c%d", &pismeno2, &cislo2) == 2 && isalpha(pismeno2) && (cislo2 > 0 && cislo2 < 8)) {
-                        printf("Napisal si: %c%d\n", pismeno2, cislo2);
-                        ovladanieCisla2 = 1;
-                        Sleep(1000);
-                        //break;
+                            switch (vyberSektoru)
+                            {
+                            case 1:
+                            {
+                                random_device rd;
+                                mt19937 gen(rd());
+                                uniform_int_distribution<int> distribution(1, 3);
+                                // Generate a random number
+                                int randomNumber = distribution(gen);
+
+                                random_device rd2;
+                                mt19937 gen2(rd2());
+                                uniform_int_distribution<int> distribution2(1, 2);
+                                // Generate a random number
+                                cislo2 = distribution2(gen2);
+
+                                if (randomNumber == 1)
+                                {
+                                    pismeno2 = 'A';
+                                }
+                                else if (randomNumber == 2)
+                                {
+                                    pismeno2 = 'B';
+                                }
+                                else if (randomNumber == 3)
+                                {
+                                    pismeno2 = 'C';
+                                }
+                                ovladanieCisla2 = 1;
+                                break;
+                            }
+                            case 2:
+                            {
+                                random_device rd;
+                                mt19937 gen(rd());
+                                uniform_int_distribution<int> distribution(4, 6);
+                                // Generate a random number
+                                int randomNumber = distribution(gen);
+
+                                random_device rd2;
+                                mt19937 gen2(rd2());
+                                uniform_int_distribution<int> distribution2(1, 2);
+                                // Generate a random number
+                                cislo2 = distribution2(gen2);
+
+                                if (randomNumber == 4)
+                                {
+                                    pismeno2 = 'D';
+                                }
+                                else if (randomNumber == 5)
+                                {
+                                    pismeno2 = 'E';
+                                }
+                                else if (randomNumber == 6)
+                                {
+                                    pismeno2 = 'F';
+                                }
+                                ovladanieCisla2 = 1;
+                                break;
+                            }
+                            case 3:
+                            {
+                                random_device rd;
+                                mt19937 gen(rd());
+                                uniform_int_distribution<int> distribution(7, 9);
+                                // Generate a random number
+                                int randomNumber = distribution(gen);
+
+                                random_device rd2;
+                                mt19937 gen2(rd2());
+                                uniform_int_distribution<int> distribution2(1, 2);
+                                // Generate a random number
+                                cislo2 = distribution2(gen2);
+
+                                if (randomNumber == 7)
+                                {
+                                    pismeno2 = 'G';
+                                }
+                                else if (randomNumber == 8)
+                                {
+                                    pismeno2 = 'H';
+                                }
+                                else if (randomNumber == 9)
+                                {
+                                    pismeno2 = 'I';
+                                }
+                                ovladanieCisla2 = 1;
+                                break;
+                            }
+                            case 4:
+                            {
+                                random_device rd;
+                                mt19937 gen(rd());
+                                uniform_int_distribution<int> distribution(1, 3);
+                                // Generate a random number
+                                int randomNumber = distribution(gen);
+
+                                random_device rd2;
+                                mt19937 gen2(rd2());
+                                uniform_int_distribution<int> distribution2(3, 4);
+                                // Generate a random number
+                                cislo2 = distribution2(gen2);
+
+                                if (randomNumber == 1)
+                                {
+                                    pismeno2 = 'A';
+                                }
+                                else if (randomNumber == 2)
+                                {
+                                    pismeno2 = 'B';
+                                }
+                                else if (randomNumber == 3)
+                                {
+                                    pismeno2 = 'C';
+                                }
+                                ovladanieCisla2 = 1;
+                                break;
+                            }
+                            case 5:
+                            {
+                                random_device rd;
+                                mt19937 gen(rd());
+                                uniform_int_distribution<int> distribution(4, 6);
+                                // Generate a random number
+                                int randomNumber = distribution(gen);
+
+                                random_device rd2;
+                                mt19937 gen2(rd2());
+                                uniform_int_distribution<int> distribution2(3, 4);
+                                // Generate a random number
+                                cislo2 = distribution2(gen2);
+
+                                if (randomNumber == 4)
+                                {
+                                    pismeno2 = 'D';
+                                }
+                                else if (randomNumber == 5)
+                                {
+                                    pismeno2 = 'E';
+                                }
+                                else if (randomNumber == 6)
+                                {
+                                    pismeno2 = 'F';
+                                }
+                                ovladanieCisla2 = 1;
+                                break;
+                            }
+                            case 6:
+                            {
+                                random_device rd;
+                                mt19937 gen(rd());
+                                uniform_int_distribution<int> distribution(7, 9);
+                                // Generate a random number
+                                int randomNumber = distribution(gen);
+
+                                random_device rd2;
+                                mt19937 gen2(rd2());
+                                uniform_int_distribution<int> distribution2(3, 4);
+                                // Generate a random number
+                                cislo2 = distribution2(gen2);
+
+                                if (randomNumber == 7)
+                                {
+                                    pismeno2 = 'G';
+                                }
+                                else if (randomNumber == 8)
+                                {
+                                    pismeno2 = 'H';
+                                }
+                                else if (randomNumber == 9)
+                                {
+                                    pismeno2 = 'I';
+                                }
+                                ovladanieCisla2 = 1;
+                                break;
+                            }
+                            case 7:
+                            {
+                                random_device rd;
+                                mt19937 gen(rd());
+                                uniform_int_distribution<int> distribution(1, 3);
+                                // Generate a random number
+                                int randomNumber = distribution(gen);
+
+                                random_device rd2;
+                                mt19937 gen2(rd2());
+                                uniform_int_distribution<int> distribution2(5, 7);
+                                // Generate a random number
+                                cislo2 = distribution2(gen2);
+
+                                if (randomNumber == 1)
+                                {
+                                    pismeno2 = 'A';
+                                }
+                                else if (randomNumber == 2)
+                                {
+                                    pismeno2 = 'B';
+                                }
+                                else if (randomNumber == 3)
+                                {
+                                    pismeno2 = 'C';
+                                }
+                                ovladanieCisla2 = 1;
+                                break;
+                            }
+                            case 8:
+                            {
+                                random_device rd;
+                                mt19937 gen(rd());
+                                uniform_int_distribution<int> distribution(4, 6);
+                                // Generate a random number
+                                int randomNumber = distribution(gen);
+
+                                random_device rd2;
+                                mt19937 gen2(rd2());
+                                uniform_int_distribution<int> distribution2(5, 7);
+                                // Generate a random number
+                                cislo2 = distribution2(gen2);
+
+                                if (randomNumber == 4)
+                                {
+                                    pismeno2 = 'D';
+                                }
+                                else if (randomNumber == 5)
+                                {
+                                    pismeno2 = 'E';
+                                }
+                                else if (randomNumber == 6)
+                                {
+                                    pismeno2 = 'F';
+                                }
+                                ovladanieCisla2 = 1;
+                                break;
+                            }
+                            case 9:
+                            {
+                                random_device rd;
+                                mt19937 gen(rd());
+                                uniform_int_distribution<int> distribution(7, 9);
+                                // Generate a random number
+                                int randomNumber = distribution(gen);
+
+                                random_device rd2;
+                                mt19937 gen2(rd2());
+                                uniform_int_distribution<int> distribution2(5, 7);
+                                // Generate a random number
+                                cislo2 = distribution2(gen2);
+
+                                if (randomNumber == 7)
+                                {
+                                    pismeno2 = 'G';
+                                }
+                                else if (randomNumber == 8)
+                                {
+                                    pismeno2 = 'H';
+                                }
+                                else if (randomNumber == 9)
+                                {
+                                    pismeno2 = 'I';
+                                }
+                                ovladanieCisla2 = 1;
+                                break;
+                            }
+                            default:
+
+                                break;
+                            }
+                            break;
+                        } while (true);
                     }
                     else
                     {
-                        system("cls");
-                        printf("Zly input! Skuste to znovu.\n");
-                        Sleep(1000);
+                        printf("\n\n\nVlozte pismeno a cislo miesta v tvar 'A1': ");
 
-                        while (getchar() != '\n');
+                        if (scanf(" %c%d", &pismeno2, &cislo2) == 2 && isalpha(pismeno2) && (cislo2 > 0 && cislo2 < 8)) {
+                            printf("Napisal si: %c%d\n", pismeno2, cislo2);
+                            ovladanieCisla2 = 1;
+                            Sleep(1000);
+                            //break;
+                        }
+                        else
+                        {
+                            system("cls");
+                            printf("Zly input! Skuste to znovu.\n");
+                            Sleep(1000);
+
+                            while (getchar() != '\n');
+                        }
                     }
 
                     fopen_s(&f2, "C:\\Users\\lovis\\Documents\\Skola\\BPC-PC1T\\Projekt_kino_main\\kino5\\Sala3.txt", "r+");
@@ -1280,115 +2164,115 @@ void zrusitRezervaciu()
         }
         case 2:
         {
-            int choice2;
+            
             {
-            fflush(stdin);
-            system("cls");
-            printf_s("Zadajte kod listku: ");
+                fflush(stdin);
+                system("cls");
+                printf_s("Zadajte kod listku: ");
 
-            if ((scanf_s("%d", &cislo)) == 1 && (cislo > 210 && cislo < 280))
-            {
-                fopen_s(&f1, "C:\\Users\\lovis\\Documents\\Skola\\BPC-PC1T\\Projekt_kino_main\\kino5\\Sala2.txt", "r+");
-
-                char grid[rows][cols];
-                for (int i = 0; i < rows; ++i) {
-                    for (int j = 0; j < cols; ++j) {
-                        if (fread(&grid[i][j], sizeof(char), 1, f1) != 1) {
-                            cerr << "Error reading from file." << endl;
-                            fclose(f1);
-                            return;
-                        }
-                    }
-                    cout << endl;
-                    system("cls");
-                }
-                cisloNaPracu = cislo - 200;
-                poslednaCislica = cisloNaPracu % 10;
-                cislicaRadu = cisloNaPracu / 10;
-
-                switch (poslednaCislica)
+                if ((scanf_s("%d", &cislo)) == 1 && (cislo > 210 && cislo < 280))
                 {
-                case 1:
-                    cisloPismeno = 7;
-                    break;
-                case 2:
-                    cisloPismeno = 9;
-                    break;
-                case 3:
-                    cisloPismeno = 11;
-                    break;
-                case 4:
-                    cisloPismeno = 13;
-                    break;
-                case 5:
-                    cisloPismeno = 15;
-                    break;
-                case 6:
-                    cisloPismeno = 17;
-                    break;
-                case 7:
-                    cisloPismeno = 19;
-                    break;
-                case 8:
-                    cisloPismeno = 21;
-                    break;
-                case 9:
-                    cisloPismeno = 23;
-                    break;
-                default:
-                    break;
-                }
+                    fopen_s(&f1, "C:\\Users\\lovis\\Documents\\Skola\\BPC-PC1T\\Projekt_kino_main\\kino5\\Sala2.txt", "r+");
 
-                if (grid[cislicaRadu][cisloPismeno - 3] == 'O')
-                {
-                    printf_s("Miesto este nebolo rezervovane.");
-                    Sleep(1000);
-                }
-                else
-                {
-                    grid[cislicaRadu][cisloPismeno - 3] = 'O';
-
-                    rewind(f1);
-
-                    // Zmeň a zapíš späť do textaku
+                    char grid[rows][cols];
                     for (int i = 0; i < rows; ++i) {
                         for (int j = 0; j < cols; ++j) {
-                            if (fwrite(&grid[i][j], sizeof(char), 1, f1) != 1) {
-                                cerr << "Chyba pri zapise!" << endl;
+                            if (fread(&grid[i][j], sizeof(char), 1, f1) != 1) {
+                                cerr << "Error reading from file." << endl;
                                 fclose(f1);
                                 return;
                             }
                         }
+                        cout << endl;
+                        system("cls");
+                    }
+                    cisloNaPracu = cislo - 200;
+                    poslednaCislica = cisloNaPracu % 10;
+                    cislicaRadu = cisloNaPracu / 10;
+
+                    switch (poslednaCislica)
+                    {
+                    case 1:
+                        cisloPismeno = 7;
+                        break;
+                    case 2:
+                        cisloPismeno = 9;
+                        break;
+                    case 3:
+                        cisloPismeno = 11;
+                        break;
+                    case 4:
+                        cisloPismeno = 13;
+                        break;
+                    case 5:
+                        cisloPismeno = 15;
+                        break;
+                    case 6:
+                        cisloPismeno = 17;
+                        break;
+                    case 7:
+                        cisloPismeno = 19;
+                        break;
+                    case 8:
+                        cisloPismeno = 21;
+                        break;
+                    case 9:
+                        cisloPismeno = 23;
+                        break;
+                    default:
+                        break;
                     }
 
-                    system("cls");
-                    printf("\nRezervacia uspesne Zrusena.");
-                    Sleep(1000);
+                    if (grid[cislicaRadu][cisloPismeno - 3] == 'O')
+                    {
+                        printf_s("Miesto este nebolo rezervovane.");
+                        Sleep(1000);
+                    }
+                    else
+                    {
+                        grid[cislicaRadu][cisloPismeno - 3] = 'O';
+
+                        rewind(f1);
+
+                        // Zmeň a zapíš späť do textaku
+                        for (int i = 0; i < rows; ++i) {
+                            for (int j = 0; j < cols; ++j) {
+                                if (fwrite(&grid[i][j], sizeof(char), 1, f1) != 1) {
+                                    cerr << "Chyba pri zapise!" << endl;
+                                    fclose(f1);
+                                    return;
+                                }
+                            }
+                        }
+
+                        system("cls");
+                        printf("\nRezervacia uspesne Zrusena.");
+                        Sleep(1000);
+                    }
+
+                    fclose(f1);
+                    return;
+                    break;
                 }
+                printf("\nZly kod.");
+                Sleep(1000);
 
-                fclose(f1);
-                return;
-                break;
-            }
-            printf("\nZly kod.");
-            Sleep(1000);
+                system("cls");
 
-            system("cls");
+                cout << "1. Pokracovat\n"
+                    << "2. Exit\n";
 
-            cout << "1. Pokracovat\n"
-                << "2. Exit\n";
+                cout << "\nVyber: ";
 
-            cout << "\nVyber: ";
-
+                cin >> choice;
             
-            cin >> choice;
-            switch (choice +1)
-            {
-            case 1:
-                break;
-            default:
-                return;
-            }
+                switch (choice)
+                {
+                case 1:
+                    break;
+                default:
+                    return;
+                }
 
             } while (true);
 
@@ -1495,8 +2379,9 @@ void zrusitRezervaciu()
 
                 cout << "\nVyber: ";
 
-                cin >> choice;
-                switch (choice + 2)
+                int pokracuj;
+                cin >> pokracuj;
+                switch (pokracuj)
                 {
                 case 1:
                     break;
