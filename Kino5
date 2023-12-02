@@ -2165,6 +2165,7 @@ void zrusitRezervaciu()
         case 2:
         {
             
+            do
             {
                 fflush(stdin);
                 system("cls");
@@ -2280,12 +2281,13 @@ void zrusitRezervaciu()
         }
         case 3:
         {
+            do
             {
                 fflush(stdin);
                 system("cls");
                 printf_s("Zadajte kod listku: ");
 
-                if ((scanf_s("%d", &cislo)) == 1 && (cislo > 210 && cislo < 280))
+                if ((scanf_s("%d", &cislo)) == 1 && (cislo > 310 && cislo < 380))
                 {
                     fopen_s(&f2, "C:\\Users\\lovis\\Documents\\Skola\\BPC-PC1T\\Projekt_kino_main\\kino5\\Sala3.txt", "r+");
 
